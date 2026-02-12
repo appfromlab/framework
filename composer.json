@@ -1,0 +1,27 @@
+{
+    "name": "appfromlab/framework",
+    "description": "A basic WordPress plugin framework.",
+    "type": "library",
+    "license": "GPL-3.0-only",
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "authors": [
+        {
+            "name": "Appfromlab",
+            "homepage": "https://www.appfromlab.com"
+        }
+    ],
+    "autoload": {
+        "classmap": [
+            "src/"
+        ],
+        "psr-4": {
+            "AFL\\Framework\\": "/src" 
+        }
+    },
+    "config": {
+        "classmap-authoritative": true,
+        "optimize-autoloader": true,
+        "sort-packages": true
+    }
+}
