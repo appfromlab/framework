@@ -2,16 +2,42 @@
 namespace AFL\Framework\Core;
 
 /**
+ * Configuration Manager
+ *
+ * Manages multiple configuration files and provides centralized access to application settings.
+ *
  * @since 0.0.1
  */
 class Config_Manager {
 
+	/**
+	 * List of loaded configuration objects
+	 *
+	 * @var array
+	 */
 	protected $list = array();
+
+	/**
+	 * Primary configuration folder path
+	 *
+	 * @var string
+	 */
 	private $primary_folder_path;
 
+	/**
+	 * Initialize the configuration manager
+	 */
 	public function __construct() {
 	}
 
+	/**
+	 * Boot the configuration manager
+	 *
+	 * Loads default configuration files (app.php and providers.php).
+	 *
+	 * @param string $config_folder_path Path to the configuration folder
+	 * @return void
+	 */
 	public function boot( $config_folder_path ) {
 
 		$this->set_primary_folder_path( $config_folder_path );
@@ -28,6 +54,14 @@ class Config_Manager {
 		}
 	}
 
+	/**
+	 * Set the primary configuration folder path
+	 *
+	 * Normalizes the path by removing trailing slashes/backslashes.
+	 *
+	 * @param string $folder_path The configuration folder path
+	 * @return void
+	 */
 	public function set_primary_folder_path( $folder_path ) {
 
 		$folder_path = rtrim( $folder_path, '/' );
@@ -36,10 +70,22 @@ class Config_Manager {
 		$this->primary_folder_path = $folder_path . DIRECTORY_SEPARATOR;
 	}
 
+	/**
+	 * Get the primary configuration folder path
+	 *
+	 * @return string
+	 */
 	public function get_primary_folder_path() {
 		return $this->primary_folder_path;
 	}
 
+	/**
+	 * Load a configuration file and register it
+	 *
+	 * @param string $key The configuration key/identifier
+	 * @param string $file_path Path to the PHP configuration file
+	 * @return void
+	 */
 	public function load_from_file( $key, $file_path ) {
 
 		$config = new Config();
@@ -48,6 +94,12 @@ class Config_Manager {
 		$this->list[ $key ] = $config;
 	}
 
+	/**
+	 * Get a configuration object by key
+	 *
+	 * @param string $key The configuration key
+	 * @return Config|null The configuration object or null if not found
+	 */
 	public function get( $key ) {
 
 		if ( isset( $this->list[ $key ] ) ) {
@@ -57,6 +109,13 @@ class Config_Manager {
 		}
 	}
 
+	/**
+	 * Set a configuration object
+	 *
+	 * @param string $key The configuration key
+	 * @param Config $value The configuration object
+	 * @return void
+	 */
 	public function set( $key, $value ) {
 
 		if ( isset( $this->list[ $key ] ) ) {

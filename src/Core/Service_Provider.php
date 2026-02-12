@@ -2,12 +2,27 @@
 namespace AFL\Framework\Core;
 
 /**
+ * Abstract Service Provider Base Class
+ *
+ * Base class for all service providers. Service providers are responsible for
+ * registering and bootstrapping application services at various lifecycle stages.
+ *
  * @since 0.0.1
  */
 abstract class Service_Provider {
 
+	/**
+	 * Application instance
+	 *
+	 * @var Application
+	 */
 	protected $app;
 
+	/**
+	 * Initialize the service provider
+	 *
+	 * @param Application $app The application instance
+	 */
 	public function __construct( Application $app ) {
 
 		$this->app = $app;

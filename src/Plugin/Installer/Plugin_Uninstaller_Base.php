@@ -3,18 +3,34 @@ namespace AFL\Framework\Plugin\Installer;
 
 use AFL\Framework\Plugin\Plugin_Base;
 
+/**
+ * Plugin Uninstaller Base Class
+ *
+ * Abstract base class for handling plugin uninstallation logic.
+ * Manages complete cleanup of plugin data including settings, transients, and database tables.
+ *
+ * @since 0.0.1
+ */
 abstract class Plugin_Uninstaller_Base {
 
+	/**
+	 * Plugin application instance
+	 *
+	 * @var Plugin_Base
+	 */
 	protected $app;
 
 	/**
 	 * Determine if plugin data should be deleted on uninstall.
 	 *
-	 * @return boolean
+	 * @return bool
 	 */
 	abstract public function should_delete_data();
-
-	abstract public function delete_scheduled_hooks();
+	/**
+	 * Delete scheduled WordPress cron hooks
+	 *
+	 * @return void
+	 */	abstract public function delete_scheduled_hooks();
 
 	abstract public function delete_database_tables();
 
@@ -24,11 +40,21 @@ abstract class Plugin_Uninstaller_Base {
 		$this->app = $app;
 	}
 
+	/**
+	 * Boot the uninstaller
+	 *
+	 * @return void
+	 */
 	public function boot() {
 
 		$this->uninstall();
 	}
 
+	/**
+	 * Execute the plugin uninstallation process
+	 *
+	 * @return void
+	 */
 	public function uninstall() {
 
 		if ( ! $this->should_delete_data() ) {
@@ -43,6 +69,12 @@ abstract class Plugin_Uninstaller_Base {
 		$this->app->option()->delete( 'version' );
 	}
 
+	/**
+	 * Delete all plugin transients from the database
+	 *
+	 * @global wpdb $wpdb
+	 * @return void
+	 */
 	public function delete_transients() {
 		global $wpdb;
 
