@@ -35,7 +35,7 @@ class Logger {
 	/**
 	 * Enable or disable logging
 	 *
-	 * @param bool $status Whether to enable logging
+	 * @param bool $status Whether to enable logging.
 	 * @return void
 	 */
 	public function enable( bool $status ) {
@@ -46,7 +46,7 @@ class Logger {
 	/**
 	 * Write a message to the debug log
 	 *
-	 * @param mixed $message The message to log (will be exported as string)
+	 * @param mixed $message The message to log (will be exported as string).
 	 * @return void
 	 */
 	public function write( $message ) {

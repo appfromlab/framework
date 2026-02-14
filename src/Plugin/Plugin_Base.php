@@ -34,8 +34,8 @@ class Plugin_Base extends Application {
 	 *
 	 * Initializes parent application and sets up plugin-specific services.
 	 *
-	 * @param string $file_path The main plugin file path
-	 * @param string $config_folder_path Optional path to configuration folder
+	 * @param string $file_path The main plugin file path.
+	 * @param string $config_folder_path Optional path to configuration folder.
 	 * @return void
 	 */
 	public function boot( $file_path, $config_folder_path = '' ) {
@@ -49,7 +49,7 @@ class Plugin_Base extends Application {
 	/**
 	 * Get the Plugin Option service
 	 *
-	 * @return Plugin_Option The option service instance
+	 * @return Plugin_Option The option service instance.
 	 */
 	public function option() {
 		return $this->option;
@@ -58,7 +58,7 @@ class Plugin_Base extends Application {
 	/**
 	 * Get the Plugin Transient service
 	 *
-	 * @return Plugin_Transient The transient service instance
+	 * @return Plugin_Transient The transient service instance.
 	 */
 	public function transient() {
 		return $this->transient;
@@ -67,7 +67,7 @@ class Plugin_Base extends Application {
 	/**
 	 * Get the currently installed version
 	 *
-	 * @return mixed The installed plugin version
+	 * @return mixed The installed plugin version.
 	 */
 	public function get_installed_version() {
 		return $this->option()->get( 'version' );

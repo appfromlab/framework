@@ -28,7 +28,7 @@ class Service_Provider_Manager {
 	/**
 	 * Initialize the service provider manager
 	 *
-	 * @param Application $app The application instance
+	 * @param Application $app The application instance.
 	 */
 	public function __construct( Application $app ) {
 
@@ -40,7 +40,7 @@ class Service_Provider_Manager {
 	 *
 	 * Registers and boots all service providers in the list.
 	 *
-	 * @param array $service_providers List of service provider class names
+	 * @param array $service_providers List of service provider class names.
 	 * @return void
 	 */
 	public function boot( $service_providers = array() ) {
@@ -70,7 +70,7 @@ class Service_Provider_Manager {
 	/**
 	 * Get a service provider by class name
 	 *
-	 * @param string $provider_class_name The service provider class name
+	 * @param string $provider_class_name The service provider class name.
 	 * @return Service_Provider|null
 	 */
 	public function get( $provider_class_name ) {
@@ -85,7 +85,7 @@ class Service_Provider_Manager {
 	/**
 	 * Check if a service provider is registered
 	 *
-	 * @param string $provider_class_name The service provider class name
+	 * @param string $provider_class_name The service provider class name.
 	 * @return bool
 	 */
 	public function has( $provider_class_name ) {
@@ -100,7 +100,7 @@ class Service_Provider_Manager {
 	/**
 	 * Register and add a service provider
 	 *
-	 * @param string $provider_class_name The service provider class name
+	 * @param string $provider_class_name The service provider class name.
 	 * @return void
 	 */
 	public function add( $provider_class_name ) {
