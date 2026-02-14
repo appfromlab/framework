@@ -23,7 +23,7 @@ abstract class Plugin_Activator_Base {
 	/**
 	 * Initialize the plugin activator
 	 *
-	 * @param Plugin_Base $app The plugin application instance
+	 * @param Plugin_Base $app The plugin application instance.
 	 */
 	public function __construct( Plugin_Base $app ) {
 		$this->app = $app;
@@ -119,7 +119,7 @@ abstract class Plugin_Activator_Base {
 	 */
 	public function install() {
 
-		if ( ! is_blog_installed() || $this->is_installing() ) {
+		if ( ! \is_blog_installed() || $this->is_installing() ) {
 			return false;
 		}
 

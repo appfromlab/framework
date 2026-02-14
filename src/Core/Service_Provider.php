@@ -21,7 +21,7 @@ abstract class Service_Provider {
 	/**
 	 * Initialize the service provider
 	 *
-	 * @param Application $app The application instance
+	 * @param Application $app The application instance.
 	 */
 	public function __construct( Application $app ) {
 

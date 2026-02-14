@@ -62,8 +62,8 @@ class Application {
 	 *
 	 * Initializes the logger, configuration manager, and service providers.
 	 *
-	 * @param string $file_path The main plugin/application file path
-	 * @param string $config_folder_path Optional path to configuration folder
+	 * @param string $file_path The main plugin/application file path.
+	 * @param string $config_folder_path Optional path to configuration folder.
 	 * @return void
 	 */
 	public function boot( $file_path, $config_folder_path = '' ) {
@@ -125,7 +125,7 @@ class Application {
 	/**
 	 * Get a configuration object
 	 *
-	 * @param string $file_slug The configuration file slug (e.g., 'app', 'providers')
+	 * @param string $file_slug The configuration file slug (e.g., 'app', 'providers').
 	 * @return Config
 	 */
 	public function config( $file_slug = 'app' ) {

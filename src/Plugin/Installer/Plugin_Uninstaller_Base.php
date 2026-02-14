@@ -26,16 +26,32 @@ abstract class Plugin_Uninstaller_Base {
 	 * @return bool
 	 */
 	abstract public function should_delete_data();
-	
+
 	/**
 	 * Delete scheduled WordPress cron hooks
+	 *
+	 * Override this method to unschedule any custom cron jobs.
 	 *
 	 * @return void
 	 */
 	abstract public function delete_scheduled_hooks();
 
+	/**
+	 * Delete plugin database tables
+	 *
+	 * Override this method to drop custom database tables on uninstall.
+	 *
+	 * @return void
+	 */
 	abstract public function delete_database_tables();
 
+	/**
+	 * Delete plugin settings
+	 *
+	 * Override this method to delete plugin options and settings on uninstall.
+	 *
+	 * @return void
+	 */
 	abstract public function delete_settings();
 
 	public function __construct( Plugin_Base $app ) {

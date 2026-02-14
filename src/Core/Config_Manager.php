@@ -35,7 +35,7 @@ class Config_Manager {
 	 *
 	 * Loads default configuration files (app.php and providers.php).
 	 *
-	 * @param string $config_folder_path Path to the configuration folder
+	 * @param string $config_folder_path Path to the configuration folder.
 	 * @return void
 	 */
 	public function boot( $config_folder_path ) {
@@ -59,7 +59,7 @@ class Config_Manager {
 	 *
 	 * Normalizes the path by removing trailing slashes/backslashes.
 	 *
-	 * @param string $folder_path The configuration folder path
+	 * @param string $folder_path The configuration folder path.
 	 * @return void
 	 */
 	public function set_primary_folder_path( $folder_path ) {
@@ -82,8 +82,8 @@ class Config_Manager {
 	/**
 	 * Load a configuration file and register it
 	 *
-	 * @param string $key The configuration key/identifier
-	 * @param string $file_path Path to the PHP configuration file
+	 * @param string $key The configuration key/identifier.
+	 * @param string $file_path Path to the PHP configuration file.
 	 * @return void
 	 */
 	public function load_from_file( $key, $file_path ) {
@@ -97,8 +97,8 @@ class Config_Manager {
 	/**
 	 * Get a configuration object by key
 	 *
-	 * @param string $key The configuration key
-	 * @return Config|null The configuration object or null if not found
+	 * @param string $key The configuration key.
+	 * @return Config|null The configuration object or null if not found.
 	 */
 	public function get( $key ) {
 
@@ -112,8 +112,8 @@ class Config_Manager {
 	/**
 	 * Set a configuration object
 	 *
-	 * @param string $key The configuration key
-	 * @param Config $value The configuration object
+	 * @param string $key The configuration key.
+	 * @param Config $value The configuration object.
 	 * @return void
 	 */
 	public function set( $key, $value ) {

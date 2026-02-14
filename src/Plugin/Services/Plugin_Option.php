@@ -21,8 +21,8 @@ class Plugin_Option {
 	/**
 	 * Initialize the plugin option service
 	 *
-	 * @param string $option_key_prefix The prefix to prepend to all option names
-	 * @throws InvalidArgumentException If prefix is empty
+	 * @param string $option_key_prefix The prefix to prepend to all option names.
+	 * @throws \InvalidArgumentException If prefix is empty.
 	 */
 	public function __construct( $option_key_prefix ) {
 
@@ -36,9 +36,9 @@ class Plugin_Option {
 	/**
 	 * Get a plugin option value
 	 *
-	 * @param string $option_name The option name (without prefix)
-	 * @param mixed  $default_value Value to return if option doesn't exist
-	 * @return mixed The option value or default value
+	 * @param string $option_name The option name (without prefix).
+	 * @param mixed  $default_value Value to return if option doesn't exist.
+	 * @return mixed The option value or default value.
 	 */
 	public function get( $option_name, $default_value = false ) {
 
@@ -48,10 +48,10 @@ class Plugin_Option {
 	/**
 	 * Add a new plugin option
 	 *
-	 * @param string $option_name The option name (without prefix)
-	 * @param mixed  $option_value The option value
-	 * @param bool   $autoload Whether to autoload the option
-	 * @return bool Whether the option was successfully added
+	 * @param string $option_name The option name (without prefix).
+	 * @param mixed  $option_value The option value.
+	 * @param bool   $autoload Whether to autoload the option.
+	 * @return bool  Whether the option was successfully added.
 	 */
 	public function add( $option_name, $option_value, $autoload = false ) {
 
@@ -61,9 +61,9 @@ class Plugin_Option {
 	/**
 	 * Update a plugin option
 	 *
-	 * @param string $option_name The option name (without prefix)
-	 * @param mixed  $option_value The new option value
-	 * @return bool Whether the option was successfully updated
+	 * @param string $option_name The option name (without prefix).
+	 * @param mixed  $option_value The new option value.
+	 * @return bool  Whether the option was successfully updated.
 	 */
 	public function update( $option_name, $option_value ) {
 
@@ -73,8 +73,8 @@ class Plugin_Option {
 	/**
 	 * Delete a plugin option
 	 *
-	 * @param string $option_name The option name (without prefix)
-	 * @return bool Whether the option was successfully deleted
+	 * @param string $option_name The option name (without prefix).
+	 * @return bool  Whether the option was successfully deleted.
 	 */
 	public function delete( $option_name ) {
 

@@ -23,7 +23,7 @@ abstract class Plugin_Deactivator_Base {
 	/**
 	 * Initialize the plugin deactivator
 	 *
-	 * @param Plugin_Base $app The plugin application instance
+	 * @param Plugin_Base $app The plugin application instance.
 	 */
 	public function __construct( Plugin_Base $app ) {
 		$this->app = $app;
