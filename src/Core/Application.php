@@ -75,7 +75,7 @@ class Application {
 		$this->file_path = $file_path;
 
 		if ( empty( $config_folder_path ) ) {
-			$config_folder_path = trailingslashit( dirname( $file_path ) ) . 'config/';
+			$config_folder_path = rtrim( ( dirname( $file_path ) ), '/\\' ) . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR;
 		}
 
 		$this->logger->boot();

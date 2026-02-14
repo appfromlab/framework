@@ -26,11 +26,13 @@ abstract class Plugin_Uninstaller_Base {
 	 * @return bool
 	 */
 	abstract public function should_delete_data();
+	
 	/**
 	 * Delete scheduled WordPress cron hooks
 	 *
 	 * @return void
-	 */	abstract public function delete_scheduled_hooks();
+	 */
+	abstract public function delete_scheduled_hooks();
 
 	abstract public function delete_database_tables();
 

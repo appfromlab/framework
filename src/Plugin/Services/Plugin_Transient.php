@@ -42,7 +42,7 @@ class Plugin_Transient {
 	 */
 	public function get( $transient_name, $default_value = false ) {
 
-		$value = get_transient( $this->transient_key_prefix . $transient_name );
+		$value = \get_transient( $this->transient_key_prefix . $transient_name );
 
 		return false === $value ? $default_value : $value;
 	}
@@ -57,7 +57,7 @@ class Plugin_Transient {
 	 */
 	public function set( $transient_name, $transient_value, $expiration = 0 ) {
 
-		return set_transient( $this->transient_key_prefix . $transient_name, $transient_value, $expiration );
+		return \set_transient( $this->transient_key_prefix . $transient_name, $transient_value, $expiration );
 	}
 
 	/**
@@ -68,6 +68,6 @@ class Plugin_Transient {
 	 */
 	public function delete( $transient_name ) {
 
-		return delete_transient( $this->transient_key_prefix . $transient_name );
+		return \delete_transient( $this->transient_key_prefix . $transient_name );
 	}
 }
