@@ -30,20 +30,9 @@ class Service_Provider_Manager {
 	 *
 	 * @param Application $app The application instance.
 	 */
-	public function __construct( Application $app ) {
+	public function __construct( Application $app, array $service_providers = array() ) {
 
 		$this->app = $app;
-	}
-
-	/**
-	 * Boot the service provider manager
-	 *
-	 * Registers and boots all service providers in the list.
-	 *
-	 * @param array $service_providers List of service provider class names.
-	 * @return void
-	 */
-	public function boot( $service_providers = array() ) {
 
 		if ( ! empty( $service_providers ) && is_array( $service_providers ) ) {
 
@@ -52,6 +41,16 @@ class Service_Provider_Manager {
 				$this->add( $provider_class_name );
 			}
 		}
+	}
+
+	/**
+	 * Boot the service provider manager
+	 *
+	 * Boots all service providers in the list.
+	 *
+	 * @return void
+	 */
+	public function boot() {
 
 		foreach ( $this->list() as $provider ) {
 			$provider->boot();

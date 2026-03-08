@@ -26,19 +26,12 @@ class Config_Manager {
 
 	/**
 	 * Initialize the configuration manager
-	 */
-	public function __construct() {
-	}
-
-	/**
-	 * Boot the configuration manager
 	 *
-	 * Loads default configuration files (app.php and providers.php).
+	 * Loads configuration files from the specified folder and registers them.
 	 *
-	 * @param string $config_folder_path Path to the configuration folder.
-	 * @return void
+	 * @param string $config_folder_path The path to the configuration folder.
 	 */
-	public function boot( $config_folder_path ) {
+	public function __construct( string $config_folder_path ) {
 
 		$this->set_primary_folder_path( $config_folder_path );
 
@@ -64,10 +57,7 @@ class Config_Manager {
 	 */
 	public function set_primary_folder_path( $folder_path ) {
 
-		$folder_path = rtrim( $folder_path, '/' );
-		$folder_path = rtrim( $folder_path, '\\' );
-
-		$this->primary_folder_path = $folder_path . DIRECTORY_SEPARATOR;
+		$this->primary_folder_path = rtrim( $folder_path, '/\\' ) . DIRECTORY_SEPARATOR;
 	}
 
 	/**

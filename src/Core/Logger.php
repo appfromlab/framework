@@ -18,18 +18,8 @@ class Logger {
 	 */
 	private $enable_log = false;
 
-	/**
-	 * Initialize the logger
-	 *
-	 * Enables logging if WP_DEBUG_LOG is defined and true.
-	 *
-	 * @return void
-	 */
-	public function boot() {
-
-		if ( defined( 'WP_DEBUG_LOG' ) && WP_DEBUG_LOG ) {
-			$this->enable( true );
-		}
+	public function __construct( bool $enable_log = false ) {
+		$this->enable( $enable_log );
 	}
 
 	/**
