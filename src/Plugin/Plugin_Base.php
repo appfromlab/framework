@@ -16,20 +16,6 @@ use AFL\Framework\Plugin\Services\Plugin_Transient;
 class Plugin_Base extends Application {
 
 	/**
-	 * Plugin option service
-	 *
-	 * @var Plugin_Option
-	 */
-	protected $option;
-
-	/**
-	 * Plugin transient service
-	 *
-	 * @var Plugin_Transient
-	 */
-	protected $transient;
-
-	/**
 	 * Boot the plugin application
 	 *
 	 * Initializes parent application and sets up plugin-specific services.
@@ -42,8 +28,19 @@ class Plugin_Base extends Application {
 
 		parent::boot( $file_path, $config_folder_path );
 
-		$this->option    = new Plugin_Option( $this->config()->get( 'option_key_prefix' ) );
-		$this->transient = new Plugin_Transient( $this->config()->get( 'option_key_prefix' ) );
+		$this->singleton(
+			Plugin_Option::class,
+			function ( $app ) {
+				return new Plugin_Option( $app->config()->get( 'option_key_prefix' ) );
+			}
+		);
+
+		$this->singleton(
+			Plugin_Transient::class,
+			function ( $app ) {
+				return new Plugin_Transient( $app->config()->get( 'option_key_prefix' ) );
+			}
+		);
 	}
 
 	/**
@@ -52,7 +49,7 @@ class Plugin_Base extends Application {
 	 * @return Plugin_Option The option service instance.
 	 */
 	public function option() {
-		return $this->option;
+		return $this->get( Plugin_Option::class );
 	}
 
 	/**
@@ -61,7 +58,7 @@ class Plugin_Base extends Application {
 	 * @return Plugin_Transient The transient service instance.
 	 */
 	public function transient() {
-		return $this->transient;
+		return $this->get( Plugin_Transient::class );
 	}
 
 	/**
