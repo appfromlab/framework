@@ -43,10 +43,14 @@ class Container implements \ArrayAccess {
 	 *
 	 * @param string $id The service identifier.
 	 * @param mixed  $resolver The class name, callable, or instance.
+	 * @param bool   $is_singleton Whether to treat this binding as a singleton.
 	 * @return self
 	 */
-	public function bind( $id, $resolver ) {
-		$this->bindings[ $id ] = $resolver;
+	public function bind( $id, $resolver, $is_singleton = false ) {
+		$this->bindings[ $id ] = array(
+			'resolver'  => $resolver,
+			'singleton' => $is_singleton,
+		);
 		return $this;
 	}
 
@@ -58,10 +62,7 @@ class Container implements \ArrayAccess {
 	 * @return self
 	 */
 	public function singleton( $id, $resolver ) {
-		$this->bindings[ $id ] = array(
-			'resolver'  => $resolver,
-			'singleton' => true,
-		);
+		$this->bind( $id, $resolver, true );
 		return $this;
 	}
 
