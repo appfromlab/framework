@@ -9,7 +9,7 @@ namespace AFL\Framework\Core;
  *
  * @since 0.0.1
  */
-class Application {
+class Application extends Container {
 
 	/**
 	 * Plugin/Application file path
@@ -17,13 +17,6 @@ class Application {
 	 * @var string
 	 */
 	protected $file_path;
-
-	/**
-	 * Service container instance
-	 *
-	 * @var Container
-	 */
-	protected $container;
 
 	/**
 	 * Configuration manager instance
@@ -51,7 +44,6 @@ class Application {
 	 */
 	public function __construct() {
 
-		$this->container                = new Container();
 		$this->logger                   = new Logger();
 		$this->config_manager           = new Config_Manager();
 		$this->service_provider_manager = new Service_Provider_Manager( $this );
@@ -95,11 +87,11 @@ class Application {
 	/**
 	 * Get the service container
 	 *
-	 * @return Container
+	 * @return self
 	 */
 	public function container() {
 
-		return $this->container;
+		return $this;
 	}
 
 	/**
