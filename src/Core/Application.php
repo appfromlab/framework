@@ -9,7 +9,7 @@ namespace AFL\Framework\Core;
  *
  * @since 0.0.1
  */
-class Application {
+class Application extends Container {
 
 	/**
 	 * Plugin/Application file path
@@ -19,42 +19,13 @@ class Application {
 	protected $file_path;
 
 	/**
-	 * Service container instance
-	 *
-	 * @var Container
-	 */
-	protected $container;
-
-	/**
-	 * Configuration manager instance
-	 *
-	 * @var Config_Manager
-	 */
-	protected $config_manager;
-
-	/**
-	 * Logger instance
-	 *
-	 * @var Logger
-	 */
-	protected $logger;
-
-	/**
-	 * Service provider manager instance
-	 *
-	 * @var Service_Provider_Manager
-	 */
-	protected $service_provider_manager;
-
-	/**
 	 * Initialize the application with core components
 	 */
 	public function __construct() {
 
-		$this->container                = new Container();
-		$this->logger                   = new Logger();
-		$this->config_manager           = new Config_Manager();
-		$this->service_provider_manager = new Service_Provider_Manager( $this );
+		$this->add( Logger::class, new Logger() );
+		$this->add( Config_Manager::class, new Config_Manager() );
+		$this->add( Service_Provider_Manager::class, new Service_Provider_Manager( $this ) );
 	}
 
 	/**
@@ -78,9 +49,9 @@ class Application {
 			$config_folder_path = rtrim( ( dirname( $file_path ) ), '/\\' ) . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR;
 		}
 
-		$this->logger->boot();
-		$this->config_manager->boot( $config_folder_path );
-		$this->service_provider_manager->boot( $this->config( 'providers' )->get( 'providers' ) );
+		$this->get( Logger::class )->boot();
+		$this->get( Config_Manager::class )->boot( $config_folder_path );
+		$this->get( Service_Provider_Manager::class )->boot( $this->config( 'providers' )->get( 'providers' ) );
 	}
 
 	/**
@@ -93,23 +64,13 @@ class Application {
 	}
 
 	/**
-	 * Get the service container
-	 *
-	 * @return Container
-	 */
-	public function container() {
-
-		return $this->container;
-	}
-
-	/**
 	 * Get the logger instance
 	 *
 	 * @return Logger
 	 */
 	public function logger() {
 
-		return $this->logger;
+		return $this->get( Logger::class );
 	}
 
 	/**
@@ -119,7 +80,7 @@ class Application {
 	 */
 	public function config_manager() {
 
-		return $this->config_manager;
+		return $this->get( Config_Manager::class );
 	}
 
 	/**
@@ -130,7 +91,7 @@ class Application {
 	 */
 	public function config( $file_slug = 'app' ) {
 
-		return $this->config_manager->get( $file_slug );
+		return $this->get( Config_Manager::class )->get( $file_slug );
 	}
 
 	/**
@@ -140,7 +101,7 @@ class Application {
 	 */
 	public function service_provider_manager() {
 
-		return $this->service_provider_manager;
+		return $this->get( Service_Provider_Manager::class );
 	}
 
 	/**
