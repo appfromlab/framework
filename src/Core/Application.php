@@ -82,6 +82,11 @@ class Application extends Container {
 	 * @param string $path The configuration folder path.
 	 */
 	public function set_config_folder_path( $path ) {
+
+		if ( empty( $path ) && ! is_dir( $path ) ) {
+			return;
+		}
+
 		$this->config_folder_path = rtrim( $path, '/\\' ) . DIRECTORY_SEPARATOR;
 	}
 
